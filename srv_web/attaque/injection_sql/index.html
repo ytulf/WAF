@@ -1,0 +1,60 @@
+<html>
+    <head>
+        <!-- Global site tag (gtag.js) - Google Analytics -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=UA-114760253-1"></script>
+        <script>
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+
+            gtag('config', 'UA-114760253-1');
+        </script>
+        <meta name="robots" content="noindex">
+		<meta charset="utf-8" />
+        <link rel="stylesheet" href="../style.css" />
+        <title>Injection SQL</title>
+	</head>
+	<body>
+        <div id="bloc_page">
+            <header>
+                <div id="titre_principal">
+                    <div id="logo">
+                        <img src="../images/white_hat.png" alt="White hat" />
+                        <h1>Exploitation de l'injection SQL</h1>    
+                    </div>
+					<h2> Vous êtes dans la partie pour exploiter les différents types d'injections SQL</h2>
+			</div>
+			<nav>
+                    <ul>
+                        <li><a href="../index.html">Accueil</a></li>
+                        <li><a href="../xss/index.html">XSS</a></li>
+                    </ul>
+                </nav>
+            </header>
+            <article>
+                	<div id="logo">
+                    <h1><img src="../images/injection_sql.png" alt="sql" class="ico_contract" />Les différentes attaques que nous pouvons tester dans cette rubrique : </h1>
+                </div>   
+				<nav>
+                    <ul>
+                        <li><a href="introduction.php">Clique ici </a>pour aller vers l'introduction au injection SQL</li></ul>
+                        <ul><li><a href="connexion.php">Clique ici </a>pour aller vers l'attaque de Contournement d'un formulaire d'authentification</li></ul>
+                        <ul><li><a href="articles.php">Clique ici </a> pour aller vers l'attaque d'Affichage d'enregistrements</li></ul>
+                        <ul><li><a href="time_basique.php">Clique ici </a> pour aller vers l'attaque Blind SQL Injection</li></ul>
+                        <ul><li><a href="time_total.php">Clique ici </a> pour aller vers l'attaque Total Blind SQL Injection</li></ul>
+                        <ul><li><a href="backdoor.php">Clique ici </a> pour aller vers l'attaque de la porte d'entrée dérobée</li></ul>
+                        <ul><li><a href="index.sql">Clique ici </a> pour aller vers le script de la base de données utilisée pour les attaques</li></ul>
+                        <ul><li><a href="../connexion.html">Pour revenir à l'index global</a></li></ul>
+                    </ul>
+                </nav>
+	</article>
+	<aside>
+                    <h1>Qu'est-ce qu'est une injection SQL</h1>                
+                    <p>Dans les différentes rubriques ci-dessous, nous allons aborder les injections SQL par le biais des quatres attaques les plus répandues </p> 
+                    <p> Une injection SQL, comme son nom l'indique, consiste à injecter du code SQL dans une donnée afin de continuer ou plutôt de détourner la requête et de lui faire faire autre chose que ce pour quoi elle a été conçue. Cela permet de manipuler la base de données et d'accéder, par exemple, à des données "normalement" inaccessibles (tables des utilisateurs avec tout ce qu'elle contient : login, mot de passe, adresse mail etc…) ou encore d'effectuer des opérations qu'un utilisateur classique ne devrait pas pouvoir faire (suppression de la base de données, ajout/modification d'enregistrements, création/lecture de fichiers etc…).</p>
+                   
+                </aside>
+
+        </div>
+    </body>
+</html>

@@ -1,0 +1,52 @@
+<html>
+    <head>
+        <!-- Global site tag (gtag.js) - Google Analytics -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=UA-114760253-1"></script>
+        <script>
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+
+            gtag('config', 'UA-114760253-1');
+        </script>
+        <meta name="robots" content="noindex">
+		<meta charset="utf-8" />
+        <link rel="stylesheet" href="../style.css" />
+        <title>L'attaque XSS</title>
+	</head>
+	<body>
+        <div id="bloc_page">
+            <header>
+                <div id="titre_principal">
+                    <div id="logo">
+                        <img src="../images/white_hat.png" alt="White hat" />
+                        <h1>Section de l'attaque XSS</h1>    
+                    </div>
+					<h2>Vous êtes dans la partie pour exploiter la faille XSS</h2>
+			</div>
+			<nav>
+                    <ul>
+                        <li><a href="../connexion.html">Accueil</a></li>
+                        <li><a href="../injection_sql/index.html">SQL</a></li>
+                    </ul>
+                </nav>
+            </header>
+            <article>
+                	<div id="logo">
+                    <h1><img src="../images/xss.png" alt="xss" class="ico_contract" />Les différentes attaques que nous pouvons tester dans cette rubrique : </h1>
+                </div>   
+<nav>
+                    <ul>
+                        <li><a href="xss.php">Clique ici </a> pour aller vers la page utilisée exploiter la faille XSS</li></ul>
+                        <ul><li><a href="../connexion.html">Pour revenir à l'index global</a></li>
+                    </ul>
+                </nav>
+	</article>
+	<aside>
+                    <h1>Qu'est-ce que c'est ?</h1>                
+                    <p>Une faille XSS consiste à injecter du code directement interprétable par le navigateur Web, comme, par exemple, du JavaScript ou du HTML. Cette attaque ne vise pas directement le site comme le ferait une injection SQL mais concerne plutôt la partie client c'est-à-dire vous (ou plutôt votre navigateur). Ce dernier ne fera aucune différence entre le code du site et celui injecté par le pirate, il va donc l'exécuter sans broncher. Les possibilités sont nombreuses : redirection vers un autre site, vol de cookies, modification du code HTML de la page, exécution d'exploits contre le navigateur : en bref, tout ce que ces langages de script vous permettent de faire.</p>
+                   
+                </aside>
+        </div>
+    </body>
+</html>

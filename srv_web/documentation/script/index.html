@@ -1,0 +1,277 @@
+
+<html>
+	<head>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-114760253-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-114760253-1');
+</script>
+		<meta charset="utf-8" />
+        <script src='https://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js'></script>
+        <link rel="stylesheet" href="style.css" />
+        <link rel="stylesheet" href="prism.css">
+        <script src="prism.js"></script>
+        <title>Script</title>
+	</head>
+	<body>
+        <div id="bloc_page">
+            <header>
+                <div id="titre_principal">
+                    <div id="logo">
+                        <img src="../images/white_hat.png" alt="White hat" />
+                        <h1>Script</h1>    
+                    </div>
+				<h2>Bienvenue dans la section script</h2>
+			</div>
+			<nav>
+                    <ul>
+                        <li><a href="../index.html">Accueil</a></li>
+                        <li><a href="../securite/index.html">Sécurité</a></li>
+                        <li><a href="../lprt/index.html">LPRT</a></li>
+                    </ul>
+                </nav>
+            </header>
+<br>
+<br>
+<section>
+        <article>
+	           <h1>Dans cette section : </h1>
+            <p>Vous allez pouvoir visualiser tous les scripts que j'ai créé. Ces scripts concerne majoritairement la distribution Debian 8 et 9.</p>  
+<script>
+                 // On attend que la page soit chargée 
+                    jQuery(document).ready(function()
+                    {
+                        // On cache la zone de texte
+                        jQuery('#toggle').hide();
+                        jQuery('#toggle1').hide();
+                        jQuery('#toggle2').hide();
+                        jQuery('#toggle3').hide();
+                        jQuery('#toggle4').hide();
+                        jQuery('#toggle5').hide();
+                        jQuery('#toggle6').hide();
+                        jQuery('#toggle7').hide();
+
+                        // toggle() lorsque le lien avec l'ID #toggler est cliqué
+                        jQuery('a#toggler').click(function()
+                            {
+                                jQuery('#toggle').toggle(400);
+                                return false;
+                            });
+                        jQuery('a#toggler1').click(function()
+                            {
+                                jQuery('#toggle1').toggle(400);
+                                return false;
+                            });
+                        jQuery('a#toggler2').click(function()
+                            {
+                                jQuery('#toggle2').toggle(400);
+                                return false;
+                            });
+                        jQuery('a#toggler3').click(function()
+                            {
+                                jQuery('#toggle3').toggle(400);
+                                return false;
+                            });
+                        jQuery('a#toggler4').click(function()
+                            {
+                                jQuery('#toggle4').toggle(400);
+                                return false;
+                            });
+                        jQuery('a#toggler5').click(function()
+                            {
+                                jQuery('#toggle5').toggle(400);
+                                return false;
+                            });
+                        jQuery('a#toggler6').click(function()
+                            {
+                                jQuery('#toggle6').toggle(400);
+                                return false;
+                            });
+                        jQuery('a#toggler7').click(function()
+                            {
+                                jQuery('#toggle7').toggle(400);
+                                return false;
+                            });
+                    });
+                /* ]]> */ 
+                </script>
+<ul>
+    <li>
+        <p><a href="#" id="toggler">Installer Docker :</a></p>
+    </li>
+        <div id="toggle">
+         <pre>
+                <code class="language-bash">
+### Mise à jour des sources listes
+apt update -y
+[[ -z `dpkg --get-selections | grep -w ^software-properties-common[^-]` ]] && apt install software-properties-common -y
+
+### Suppression des sources-listes pour repartir sur des bases propres
+echo "" > /etc/apt/sources.list
+add-apt-repository "deb [arch=amd64] https://deb.debian.org/$(. /etc/os-release; echo "$ID") $(lsb_release -cs) main contrib non-free"
+add-apt-repository "deb [arch=amd64] https://deb.debian.org/$(. /etc/os-release; echo "$ID") $(lsb_release -cs)-updates main contrib non-free"
+add-apt-repository "deb [arch=amd64] https://security.debian.org/$(. /etc/os-release; echo "$ID") $(lsb_release -cs)/updates main contrib non-free"
+
+sed -i "s/#\ //" /etc/apt/sources.list
+
+### Mise à jour du système
+apt update -y && apt upgrade -y
+
+### Installation des dépendances requises
+[[ -z `dpkg --get-selections | grep -w ^apt-transport-https[^-]` ]] && apt install apt-transport-https -y
+[[ -z `dpkg --get-selections | grep -w ^ca-certificates[^-]` ]] && apt install ca-certificates -y
+[[ -z `dpkg --get-selections | grep -w ^curl[^-]` ]] && apt install curl -y
+[[ -z `dpkg --get-selections | grep -w ^gnupg2[^-]` ]] && apt install gnupg2 -y
+
+### Ajout du dépôt
+curl -fsSL https://download.docker.com/linux/$(. /etc/os-release; echo "$ID")/gpg | apt-key add -
+add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/$(. /etc/os-release; echo "$ID") $(lsb_release -cs) stable"
+
+### Installation de docker-ce
+apt update -y
+[[ -z `dpkg --get-selections | grep -w ^docker-ce[^-]` ]] && apt install docker-ce -y
+
+### Lancement du premier container
+docker run hello-world
+                </code>
+            </pre>
+        </div>
+    <li>
+        <p><a href="#" id="toggler1">Commandes "wget" pour télécharger uniquement les images ou MP3 ou avi :</a></p>
+    </li>
+        <div id="toggle1">
+        <pre>
+            <code class="language-bash">
+### Pour les images
+wget -r -l1 -H -nd -A jpg -e robots=off http://le_site_web_jpg/
+
+### Pour les MP3
+wget -r -l1 -H -nd -A mp3 -e robots=off http://lien_vers_site_mp3
+
+### Pour les avi
+wget -r -l1 -H -nd -A avi -e robots=off http://lien_vers_site_avi
+            </code>
+        </pre>
+    </div>
+        <li>
+            <p><a href="#" id="toggler2">Installer eZ Server Monitor (eSM) (is a script for monitoring Linux servers. It is available in Bash version and Web application.)</a></p>
+        </li>
+        <div id="toggle2">
+        <pre>
+            <code class="language-bash">
+### Installation de dialog
+apt update -y
+[[ -z `dpkg --get-selections | grep -w ^dialog[^-]` ]] && apt install dialog -y
+
+### Installation de eZ
+DIALOG=${DIALOG=dialog}
+fichtemp=`tempfile 2>/dev/null` || fichtemp=/tmp/test$$
+trap "rm -f $fichtemp" 0 1 2 5 15
+
+$DIALOG --backtitle "Que voulez-vous faire ?" \
+    --title "Choix" --clear \
+        --radiolist "Vous pouvez choisir parmi la liste ci-dessous :\n
+    Pour sélectionner faites défiler puis 'espace' pour choisir " 20 61 5 \
+    "1" "Accès via interface graphique" ON\
+      "2" "Accès via terminal" off\
+           "3" "Rien de tout ça" off 2> $fichtemp
+valret=$?
+choix=`cat $fichtemp`
+case $choix in 
+        "1")
+clear
+### Installation des dépôts
+[[ -z `dpkg --get-selections | grep -w ^apache2[^-]` ]] && apt install apache2 -y 
+[[ -z `dpkg --get-selections | grep -w ^php7.0[^-]` ]] && apt install php7.0 -y
+[[ -z `dpkg --get-selections | grep -w ^unzip[^-]` ]] && apt install unzip -y
+
+cd /var/www/html
+wget https://www.ezservermonitor.com/esm-web/downloads/version/2.5
+unzip /var/www/html/2.5
+
+mv /var/www/html/eZServerMonitor-2.5 /var/www/html/ez
+chown www-data:www-data -Rf /var/www/html/ez/
+
+/sbin/ip -o -4 addr list enp0s3 | awk '{print $4}' | cut -d/ -f1 > ip.txt
+read -p "
+Aller maintenant sur http://`cat ip.txt`/ez, une fois fait appuyer sur n'importe quelle touche pour retourner sur l'hôte" pause
+rm -rf ip.txt
+;;
+"2")
+clear
+[[ -z `dpkg --get-selections | grep -w ^unzip[^-]` ]] && apt install unzip -y
+wget https://www.ezservermonitor.com/esm-sh/downloads/version/2.2
+unzip  2.2
+chmod +x eZServerMonitor.sh
+./eZServerMonitor.sh -a
+read -p "
+Pour relancer le script quand vous voulez il suffit de faire './eZserverMonitor.sh -a'.
+Appuyez sur n'importe quelle touche pour continuer" pause
+;;
+*)
+clear
+echo "
+Vous n'avez rien sélectionné donc redémarrer le script "
+;;
+esac
+</code>
+</pre>
+    </div>
+<li>
+            <p><a href="#" id="toggler3">Bout de script pouvant être utile :</a></p>
+        </li>
+        <div id="toggle3">
+                <p><a href="#" id="toggler4">Connaître l'adresse IP de la machine</a></p>
+                <div id="toggle4">
+                    <pre>
+                        <code class="language-bash">
+### Avant debian 9 :
+ifconfig eth0 | grep "inet adr" | sed 's/.*adr:\([0-9]*\.[0-9]*\.[0-9]*\.[0-9]*\).*/\1/'
+
+### Pour debian 9 :
+/sbin/ip -o -4 addr list enp0s3 | awk '{print $4}' | cut -d/ -f1 
+
+### Ou tout simplement :
+hostname -I
+                        </code>
+                    </pre>
+                </div>
+             <p><a href="#" id="toggler5">Pour savoir si la machine a un processeur 64 bits ou 32 bits</a></p>
+                <div id="toggle5">
+                    <pre>
+                        <code class="language-bash">
+( grep flags /proc/cpuinfo | grep -q '\<lm\>' ) &&  echo 64 bits || echo 32 bits
+                        </code>
+                    </pre>
+                </div>
+                <p><a href="#" id="toggler6">Pour savoir si un paquet est installé (par exemple "curl")</a></p>
+                <div id="toggle6">
+                    <pre>
+                        <code class="language-bash">
+dpkg --get-selections | grep -w ^curl[^-]
+### si la commande ne retourne rien, c'est que le paquet n'est pas installé. 
+
+### Ainsi, la ligne suivante, dans un script, testera si le paquet est installé et l'installera si ce n'est pas le cas :
+[[ -z `dpkg --get-selections | grep -w ^curl[^-]` ]] && apt install curl -y
+                        </code>
+                    </pre>
+                </div>
+        </div>
+        <li>
+            <p><a href="#" id="toggler7">En cours d'upload :</a></p>
+        </li>
+        <div id="toggle7">
+            <p>En cours d'upload ...</p>
+        </div>
+
+</ul>
+</article>
+</section>
+        </div>
+    </body> 
+</footer> 
+</html>

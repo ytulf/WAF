@@ -1,0 +1,87 @@
+<html>
+        <head>
+            <!-- Global site tag (gtag.js) - Google Analytics -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=UA-114760253-1"></script>
+        <script>
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+
+            gtag('config', 'UA-114760253-1');
+        </script>
+        <script src='https://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js'></script>
+        <meta charset="utf-8" />
+        <link rel="stylesheet" href="../style.css" />
+        <title>Sécurité</title>
+        </head>
+        <body>
+        <div id="bloc_page">
+            <header>
+                <div id="titre_principal">
+                    <div id="logo">
+                        <img src="../images/white_hat.png" alt="White hat" />
+                        <h1>Sécurité</h1>
+                    </div>
+                                <h2>Bienvenue dans la section Sécurité</h2>
+                        </div>
+                        <nav>
+                    <ul>
+                        <li><a href="../">Accueil</a></li>
+                        <li><a href="../lprt/">LPRT</a></li>
+                        <li><a href="../script/">Script</a></li>
+                    </ul>
+                </nav>
+            </header>
+<br>
+<br>
+<section>
+                <article>    
+                <h1>Dans cette section : </h1>                   
+                <p>Vous pouvez visualiser les rapports que j'ai rédigé qui sont en relation avec la sécurité informatique :</p>
+                <script>
+                    // On attend que la page soit chargée 
+                    jQuery(document).ready(function()
+                        {
+                              // On cache la zone de texte
+                              jQuery('#toggle').hide();
+                              jQuery('#toggle1').hide();
+
+                            // toggle() lorsque le lien avec l'ID #toggler est cliqué
+                             jQuery('a#toggler').click(function()
+                            {
+                               jQuery('#toggle').toggle(400);
+                                 return false;
+                            });
+                            jQuery('a#toggler1').click(function()
+                            {
+                               jQuery('#toggle1').toggle(400);
+                                 return false;
+                            });
+                        });
+                    /* ]]> */ 
+                </script>
+                <ul>
+    <li>
+        <p><a href="#" id="toggler">Projet tuteuré</a></p>
+    </li>
+    <div id="toggle">
+        <p><a href="../rapport/projet_waf.pdf">Projet tuteuré sur l'exploitation, la sécurisation d'un serveur Web et la configuration d'un WAF</a></p>
+    </div>
+    <li>
+        <p><a href="#" id="toggler1">Déchiffrer un mot de passe Cisco (7)</a></p>
+    </li>
+    <div id="toggle1">
+        <p><a href="cisco.html">Déchiffrement d'un mot de passe étant hashé par l'algorythme de cisco (password 7 ...)</a></p>
+    </div>
+      <!-- 
+    <li>
+        <p>Bientôt là</p>
+    </li>
+        <p><a href="../rapport/tp_watchguard.pdf">Module M26 : TP N°1 : FIREWALL ET SÉCURITÉ D’UN RÉSEAU D’ENTREPRISE</a></p>
+ 
+    --></ul>
+    </article>
+  </section>
+</div>
+</body>
+</html>

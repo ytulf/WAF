@@ -1,0 +1,301 @@
+<html>
+        <head>
+        <meta name="robots" content="noindex">
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-114760253-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-114760253-1');
+</script>
+        <meta charset="utf-8" />
+        <script src='https://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js'></script>
+        <link rel="stylesheet" href="style.css" />
+        <link rel="stylesheet" href="prism.css">
+        <script src="prism.js"></script>
+        <title>Introduction</title>
+        </head>
+        <body>
+        <div id="bloc_page">
+            <header>
+                <div id="titre_principal">
+                    <div id="logo">
+                        <img src="../images/white_hat.png" alt="White hat" />
+                        <h1>Introduction</h1>
+                    </div>
+                                <h2>Introduction à l'injection SQL</h2>
+                        </div>
+                        <nav>
+                    <ul>
+                        <li><a href="../connexion.html">Accueil</a></li>
+                        <li><a href="../xss/index.html">XSS</a></li>
+                        <li><a href="../injection_sql/index.html">SQL</a></li>
+
+                    </ul>
+                </nav>
+            </header>
+<br>
+<br>
+<section>
+                <article>                       
+                 <p>Une injection SQL, comme son nom l’indique, consiste à injecter du code SQL dans une donnée afin de continuer ou plutôt de détourner la requête et de lui faire faire autre chose que ce pour quoi elle a été conçue. Cela permet de manipuler la base de données et d’accéder, par exemple, à des données "normalement" inaccessibles (tables des utilisateurs avec tout ce qu’elle contient : nom d’utilisateur, mot de passe, adresse mail...) ou encore d’effectuer des opérations qu’un utilisateur classique ne devrait pas pouvoir faire (suppression de la base de données, ajout/modification d’enregistrement, création/lecture de fichiers...).</p>
+                <p>Nous allons tout d’abord expliquer son fonctionnement de façon basique avec deux exemples : </p> 
+
+                 <script>
+                 // On attend que la page soit chargée 
+                    jQuery(document).ready(function()
+                    {
+                        // On cache la zone de texte
+                        jQuery('#toggle').hide();
+                        jQuery('#toggle1').hide();
+                        jQuery('#toggle2').hide();
+                        jQuery('#toggle3').hide();
+                        jQuery('#toggle4').hide();
+                        jQuery('#toggle5').hide();
+                        jQuery('#toggle6').hide();
+                        jQuery('#toggle7').hide();
+                        jQuery('#toggle8').hide();
+                        jQuery('#toggle9').hide();
+                        jQuery('#toggle10').hide();
+                        jQuery('#toggle11').hide();
+                        jQuery('#toggle12').hide();
+                        jQuery('#toggle13').hide();
+                        jQuery('#toggle14').hide();
+
+                        // toggle() lorsque le lien avec l'ID #toggler est cliqué
+                        jQuery('a#toggler').click(function()
+                            {
+                                jQuery('#toggle').toggle(400);
+                                return false;
+                            });
+                        jQuery('a#toggler1').click(function()
+                            {
+                                jQuery('#toggle1').toggle(400);
+                                return false;
+                            });
+                        jQuery('a#toggler2').click(function()
+                            {
+                                jQuery('#toggle2').toggle(400);
+                                return false;
+                            });
+                        jQuery('a#toggler3').click(function()
+                            {
+                                jQuery('#toggle3').toggle(400);
+                                return false;
+                            });
+                        jQuery('a#toggler4').click(function()
+                            {
+                                jQuery('#toggle4').toggle(400);
+                                return false;
+                            });
+                        jQuery('a#toggler5').click(function()
+                            {
+                                jQuery('#toggle5').toggle(400);
+                                return false;
+                            });
+                        jQuery('a#toggler6').click(function()
+                            {
+                                jQuery('#toggle6').toggle(400);
+                                return false;
+                            });
+                        jQuery('a#toggler7').click(function()
+                            {
+                                jQuery('#toggle7').toggle(400);
+                                return false;
+                            });
+                        jQuery('a#toggler8').click(function()
+                            {
+                                jQuery('#toggle8').toggle(400);
+                                return false;
+                            });
+                        jQuery('a#toggler9').click(function()
+                            {
+                                jQuery('#toggle9').toggle(400);
+                                return false;
+                            });
+                        jQuery('a#toggler10').click(function()
+                            {
+                                jQuery('#toggle10').toggle(400);
+                                return false;
+                            });
+                        jQuery('a#toggler11').click(function()
+                            {
+                                jQuery('#toggle11').toggle(400);
+                                return false;
+                            });
+                        jQuery('a#toggler12').click(function()
+                            {
+                                jQuery('#toggle12').toggle(400);
+                                return false;
+                            });
+                        jQuery('a#toggler13').click(function()
+                            {
+                                jQuery('#toggle13').toggle(400);
+                                return false;
+                            });
+                        jQuery('a#toggler14').click(function()
+                            {
+                                jQuery('#toggle14').toggle(400);
+                                return false;
+                            });
+                    });
+                /* ]]> */ 
+                </script>
+        <ul>
+    <li>
+        <p><a href="#" id="toggler">Premier cas : injection SQL sur une chaîne de caractère</a></p>
+    </li>
+        <div id="toggle">
+        <p><a href="#" id="toggler14">Examinons la requête suivante :</a></p>
+        <div id="toggle14"> 
+        <pre>
+            <code class="language-sql">            
+$query = "SELECT id, titre, texte FROM articles WHERE titre LIKE ’%".$_GET[’titre’]."%’";
+            </code>
+        </pre>
+    </div>
+        <p>Cette requête va rechercher l’article dont le titre contient le terme envoyé par la variable titre, variable du type GET (mais ça aurait pu être POST, cela ne change rien). Pour rappel, le protocole HTTP est conçu pour permettre les communications entre les clients et les serveurs. Il fonctionne comme un protocole de requête-réponse entre un client et un serveur. Un navigateur Web peut être le client et une application sur un ordinateur hébergeant un site Web peut être le serveur. Deux méthodes de requête sont utilisées par le protocole HTTP, GET et POST :</p>
+        <ul>
+            <li><p>La méthode GET envoie toutes les informations demandées en clair dans la barre de recherche (l’URL).</p></li>
+            <li><p>La méthode POST envoie toutes les informations de façon plus sécurisée que la méthode GET et de
+façon moins visible.</p></li>
+        </ul>
+        <p>Ces deux méthodes sont utilisées par les variables : $_GET et $_POST.Dans notre cas, la variable de type GET est présente dans l’URL sous la forme nom_variable=valeur. Imaginons maintenant que nous ayons un article intitulé L’élève parfait de LPRT. <a href="#" id="toggler1">Nous allons le rechercher en utilisant le mot élève :</a></p>
+        <div id="toggle1">
+        <pre>
+            <code>
+http://lprt.univ-angers.com/article.php?titre=élève
+            </code>
+        </pre>
+        </div>
+        <p>Cette recherche inscrite sur dans le navigateur par "?titre=élève", <a href="#" id="toggler2">correspond à la requête SQL suivante :</a></p>
+        <div id="toggle2">
+        <pre>
+            <code class="language-sql">
+SELECT id, titre, texte FROM articles
+WHERE titre LIKE ’%élève%’
+            </code>
+        </pre>
+    </div>
+    <p>Il n’y a pas de problème à signaler, tout se passe comme prévu, nous avons nos titres contenant élève qui apparaissent. <a href="#" id="toggler3">Maintenant tentons de le rechercher en utilisant cette fois le mot "L’élève".</a></p>
+    <div id="toggle3">
+        <pre>
+            <code class="language-http">
+http://lprt.univ-angers.com/article.php?titre=L’élève
+            </code>
+        </pre>
+    </div>
+        <p>Bizarrement, nous n’avons aucune information qui s’affiche. Pourquoi ? Nous allons regarder nos deux requêtes SQL de plus près afin de trouver le problème :</p>
+        <ul>
+<li><p><a href="#" id="toggler4">Premier cas : </a></p></li>
+    <div id="toggle4">
+        <pre>
+            <code class="language-sql">
+SELECT id, titre, texte FROM articles
+WHERE titre LIKE ’%élève%’
+            </code>
+        </pre>
+    </div>
+<li><p><a href="#" id="toggler5">Second cas :</a></p></li>
+    <div id="toggle5">
+        <pre>
+            <code class="language-sql">
+SELECT id, titre, texte
+FROM articles
+WHERE titre LIKE ’%L’élève%’
+            </code>
+        </pre>
+    </div>
+</ul>
+<p>Avez-vous trouvé l’erreur ou plutôt ce qui cause cette erreur ? Le responsable est en fait notre guillemet présent dans le terme recherché. Ce guillemet va être considéré comme la fin de la chaîne de caractères et ce qui suit va être interprété comme du code SQL. La commande élève%’ n’existant pas, cela produit une erreur.</p>
+<p>De ce fait, nous pouvons nous demander ce qu’il se serait passé si la commande existait et que la requête était syntaxiquement parlant juste. Il n’y aurait eu aucune erreur, de ce fait la requête aurait été interprétée. Nous utiliserons cette méthode lors de l’attaque par injection SQL afin de montrer ce que peut engendrer ce type d’injection.</p>
+<p><a href="#" id="toggler6">Maintenant, essayons d’injecter d’autre code, comme celui-ci :</a></p>
+<div id="toggle6">
+<pre>
+<code class="language-http">
+http://lprt.univ-angers.com/article.php?titre=élève’ AND 1=1 --
+</code>
+</pre>
+</div>
+<p>Il n’y a pas d’erreur, de ce fait l’article s’affiche bien et nous avons bien nos titres contenant : élève qui apparaissent. Si nous examinons plus en profondeur ce que nous venons de taper, nous pouvons apercevoir un : -- à la fin. Il s’agit d’un commentaire. En effet, si nous ne le mettons pas il restera un bout de la requête initiale, ce qui risque fort de provoquer une erreur de syntaxe... À moins que nous nous arrangeons pour que notre injection concorde syntaxiquement. Mais nous pouvons faire beaucoup plus simple. Nous allons nous arranger pour ignorer totalement cette partie et c’est précisément à ça que sert ce commentaire placé juste après notre injection.</p>
+<a href="#" id="toggler7">Si nous testons maintenant cela :</a></p>
+<div id="toggle7">
+<pre>
+<code class="language-http">
+http://lprt.univ-angers.com/article.php?titre=élève’ AND 1=2 --
+</code>
+</pre>
+</div>
+<p>Du point de vue syntaxique, il n’y a pas d’erreur cependant, cette fois l’article ne s’affiche pas. Pourquoi ? Si nous réfléchissons bien : la première condition est vérifiée, la seconde par contre ne l’est pas (1 n’est pas égal à 2 jusqu’à preuve du contraire). Le AND exige que les 2 conditions renvoient TRUE pour que le tout le soit, or là nous avons une condition renvoyant FALSE d’où l’absence de résultat. La requête est syntaxiquement juste et la présence ou l’absence de résultat nous prouve que le code SQL a bien été exécuté et qu’il est donc possible d’en injecter afin de détourner la requête initiale.</p>
+<p>Nous avons vu comment modifier et injecter de façon basique du code dans une chaine de caractères mais comment faire pour s’en protéger? Il faut les échapper", c’est le terme qui est le plus souvent utilisé dans les documentations, c’est-à-dire qu’un antislash ( \ ) sera ajouté devant les caractères potentiellement dangereux comme les guillemets ainsi que d’autres caractères. Cet \ signifiera que le caractère qui suit doit être interprété comme du simple texte. Le guillemet injecté ne sera donc plus considéré comme la fin de la chaîne mais comme un guillemet. Il sera donc impossible au pirate de fermer la chaîne et par conséquent, impossible d’exécuter son injection SQL.</p>
+<p>Pour ça, il faut utiliser des fonctions comme mysqli_real_escape_string() ou d’autres outils que nous n’aborderons pas tout de suite dans le compte-rendu. Nous avons abordé le cas d’une injection SQL sur une chaîne de caractères mais ce n’est pas le seul existant. Dans l’exemple suivant, vous comprendrez que l’échappement des chaînes n’est pas forcément suffisant pour contrer ce type d’attaque.
+Nous allons donc expliquer maintenant le second cas qui va nous montrer que les protections sur une attaque peuvent être inefficaces sur une attaque du même type mais tournée différemment. Nous allons tester l’injection SQL sur un nombre</p>
+        </div>
+    <li>
+        <p><a href="#" id="toggler8">Second cas : injection SQL sur un nombre</a></p>
+    </li>
+    <div id="toggle8">
+        <p>Cette fois, nous rechercherons notre article sur la base de son identifiant, identifiant qui est un nombre entier. Pour ce faire, <a href="#" id="toggler9">il faudra utiliser une requête de ce type :</a></p>
+        <div id="toggle9">
+<pre>
+<code class="language-sql">
+$query = "SELECT id, titre, texte FROM articles WHERE id = ".$_GET[’id’];
+</code>
+</pre>
+</div>
+<p>Cette requête va afficher l’article correspondant à l’identifiant que nous lui avons passé en paramètre. <a href="#" id="toggler10">Voici l'URL que nous allons donc avoir :</a></p>
+<div id="toggle10">
+<pre>
+<code class="language-http">
+http://lprt.univ-angers.com/article.php?id=1
+</code>
+</pre>
+</div>
+<p>L’article possédant l’id 1 sera affiché. <a href="#" id="toggler11">Ce qui correspond à cette requête SQL :</a></p>
+<div id="toggle11">
+<pre>
+<code class="language-sql">
+SELECT id, titre, texte FROM articles
+WHERE id = 1
+</code>
+</pre>
+</div>
+<p>La principale différence avec une injection sur une chaîne de caractères réside dans le fait qu’un nombre n’a pas forcément besoin d’être entouré de guillemets (bien qu’il puisse l’être mais nous n’aborderons pas ce cas-là). Le pirate n’a donc ici plus besoin de chercher à fermer la chaîne. Il peut directement injecter du code SQL après l’identifiant.</p>
+<p>De ce fait, tant qu’il n’utilise pas de chaînes de caractères (et donc des guillemets) son injection sera prise en considération sans aucun problème. L’échappement n’est donc pas suffisant dans ce cas-ci pour se protéger.<a href="#" id="toggler12"> Par exemple, si nous faisons ceci :</a></p>
+<div id="toggle12">
+<pre>
+    <code class="language-http">
+http://lprt.univ-angers.com/article.php?id=1 AND 1=2 --
+</code>
+</pre>
+</div>
+<p><a href="#" id="toggler13">Ce qui donnera en langage SQL :</a></p>
+<div id="toggle13">
+    <pre>
+    <code class="language-sql">
+SELECT id, titre, texte FROM articles
+WHERE id = 1
+AND 1=2 −−
+</code>
+</pre>
+</div>
+<p>Aucun guillemet n’a été utilisé et notre requête a bien été exécutée. Du coup, nous pourrions nous deman- der, comment faut-il faire pour se prémunir dans tous les cas ? Il y a un dicton dans le milieu informatique qui dit : "Ne faites JAMAIS confiance aux données provenant de l’utilisateur!".</p>
+<p>Pour se prémunir de ces types d’attaques, il faut vérifier que la donnée reçue corresponde bien à ce que nous attendons et de ce fait, prévoir que l’utilisateur peut tenter d’injecter des caractères non prévus (caractères alphanumériques, guillemets, slash, signes de ponctuation, etc.). Ces caractères ne doivent pas affecter le comportement de la requête sinon cela signifie qu’il est probable que nous puissions la détourner.</p>
+<p> Par exemple, si l’identifiant de l’article est un nombre et que nous savons que ça sera toujours un nombre, alors il faut vérifier que la variable reçue est bien un nombre (en PHP cela peut se faire notamment avec la fonction is_numeric). Si nous recevons une chaîne de caractères, il faut s’assurer de la gérer et de ne pas permettre à l’utilisateur de pouvoir fermer cette chaîne et, par conséquent, d’injecter ce qu’il veut à la suite. Ce n’est bien souvent pas grand chose mais une erreur de ce type peut coûter très cher. Et contrairement à ce que nous pouvons croire, ça ne touche pas que les "petits" sites. De nombreux outils très répandus sont touchés par ce fléau : nous pouvons citer notamment Wordpress, Joomla ainsi que Drupal. Ce sont tous des CMS très connus et très utilisés qui comptent des milliers voire des centaines de milliers de sites actifs à l’heure actuelle.</p>
+<p>Les injections SQL sont, comme beaucoup d’autres failles, dues à un manque de vérification de la part du développeur. Elles peuvent mener à des conséquences désastreuses et beaucoup d’entreprises ont notamment été victimes de chantage suite au vol de leur base de données. Il n’est donc pas étonnant que cette faille se retrouve dans le top du classement des failles web. Elle peut malgré tout être facilement évitée avec de bonnes pratiques comme nous venons de le voir.</p>
+    </div>
+</ul>
+    </article>
+</section>
+</div>
+<div id="bloc_page">
+<footer>
+<nav>
+<ul><li><a href="index.html">Clique ici</a> pour revenir à l'index de la rubrique SQL.</li></ul>
+<ul><li><a href="../connexion.html">Clique ici</a> pour revenir à l'index du site.</li></ul>
+</nav>
+</footer>
+</div>
+</body>
+</html>
