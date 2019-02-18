@@ -1,2 +1,2 @@
 # WAF
-Projet tuteuré sur l'exploitation d'un WAF
+Répertoire pour le projet tutoré
